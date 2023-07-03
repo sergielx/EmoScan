@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Estadísticas obtenidas{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Resultados de estadísticas</h1>
+            <p>Obtén información detallada sobre las estadísticas recopiladas.</p>
+        </div>
+    </div>
+    <div class="card justify-content-center text-center">
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Tipo de consulta:</strong> {{ filtros.tipo }}</li>
+                <li class="list-group-item"><strong>Consulta:</strong> {{ filtros.consulta }}</li>
+                <li class="list-group-item"><strong>Número de tweets:</strong> {{ filtros.numero_tweets }}</li>
+                {% if filtros.mostrar_respuestas %}
+                <li class="list-group-item"><strong>Mostrar respuestas:</strong> Sí</li>
+                {% else %}
+                <li class="list-group-item"><strong>Mostrar respuestas:</strong> No</li>
+                {% endif %}
+                <li class="list-group-item"><strong>Idioma:</strong> {{ filtros.idioma }}</li>
+                {% if filtros.desde %}
+                <li class="list-group-item"><strong>Desde:</strong> {{ filtros.desde }}</li>
+                {% else %}
+                <li class="list-group-item"><strong>Desde:</strong> No especificado</li>
+                {% endif %}
+                {% if filtros.hasta %}
+                <li class="list-group-item"><strong>Hasta:</strong> {{ filtros.hasta }}</li>
+                {% else %}
+                <li class="list-group-item"><strong>Hasta:</strong> No especificado</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='img/n_tipo_sent.png')}}" class="card-img-top"
+                    alt="Gráfica de resultados">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfica de Tipos de Sentimientos</h5>
+                    <p class="card-text">Esta gráfica muestra la distribución de los diferentes tipos de sentimientos.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='img/grafica_circ.png')}}" class="card-img-top"
+                    alt="Gráfica de resultados">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfica Circular de relación de sentimientos</h5>
+                    <p class="card-text">Esta gráfica muestra la proporción de cada sentimiento en relación al total.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='img/n_sentimientos_fecha.png')}}" class="card-img-top"
+                    alt="Gráfica de resultados">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfica de Sentimientos por Fecha</h5>
+                    <p class="card-text">Esta gráfica muestra la evolución de los sentimientos a lo largo del tiempo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Quienes somos{% endblock %}
+
+
+¡Gracias por utilizar EmoScan!
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card my-5">
+            <div class="card-body">
+                <h1 class="card-title mb-4 text-center">Quienes somos</h1>
+                <p>
+                    ¡Hola! Mi nombre es Sergio Muñoz Cano y soy el creador de EmoScan. 
+                    Soy un estudiante de Ingeniería Informática en tecnologías de la 
+                    información, apunto de terminar la carrera, realizando el TFG.
+                </p>
+                <p>
+                    Mi TFG consiste en una aplicación web que sea capaz de detectar emociones en 
+                    Twitter, esta app es EmoScan.
+                    EmoScan es una herramienta que utiliza la inteligencia artificial para 
+                    analizar y detectar las emociones en los tweets. La idea surgió al darme 
+                    cuenta de la gran cantidad de información emocional que se comparte en las 
+                    redes sociales y cómo esto puede ser útil para diversos fines, como la investigación, 
+                    el marketing, la salud mental, entre otros.                   
+                </p>
+                <p>
+                    Mi objetivo con EmoScan es brindar una solución innovadora y efectiva para analizar 
+                    las emociones en los tweets, con el fin de facilitar el trabajo de profesionales y 
+                    usuarios en general. Además, siempre estoy trabajando en mejorar la aplicación y 
+                    agregar nuevas funcionalidades para brindar una experiencia de usuario excepcional. 
+                </p>
+                <p>
+                    Si tienes alguna pregunta o comentario sobre EmoScan, no dudes en ponerte en contacto 
+                    conmigo a través de: <a href="{{ url_for('contact.contacto')}}">Contacto</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

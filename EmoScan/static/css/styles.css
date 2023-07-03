@@ -1,0 +1,296 @@
+/* Estilos generales */
+
+/* Importamos las fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300;400&display=swap');
+
+/* Estilo para el fondo de la página */
+html,
+body {
+    background-image: url(../img/background.png);
+    background-size: cover;
+    /* min-height: 100vh; */
+    height: 100%;
+}
+
+.container-fluid {
+    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Estilo para el footer */
+footer {
+    width: 100%;
+    opacity: 80%;
+    padding: 20px;
+    margin-top: auto;
+}
+
+
+div.row {
+    padding-bottom: 10px;
+}
+
+#eslogan {
+    padding-top: 4%;
+    text-align: center;
+}
+
+#eslogan img {
+    width: 70%;
+    height: 70%;
+}
+
+.center {
+    text-align: center;
+}
+
+.obligatorio {
+    color: red;
+    margin-left: 5px;
+}
+
+#erroremail {
+    display: none;
+    color: red;
+    margin: 0;
+    margin-top: 5px;
+}
+
+#errorname {
+    display: none;
+    color: red;
+    margin: 0;
+    margin-top: 5px;
+}
+
+
+/* Estilo para la barra de navegación */
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 80%;
+    padding-left: 1%;
+    margin-left: 0.5%;
+}
+
+/* Estilo para el logo en la barra de navegación */
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+/* Estilo para los enlaces de la barra de navegación */
+.navbar-nav .nav-link {
+    margin-left: 10px;
+}
+
+/* Estilo para el título principal */
+h1 {
+    font-size: 3rem;
+}
+
+/* Estilo para el formulario de inicio de sesión */
+form {
+    margin-top: 50px;
+}
+
+.card {
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 15px;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.form-floating input:focus,
+.form-floating textarea:focus {
+    border-color: #007bff;
+    box-shadow: none;
+}
+
+#mensaje {
+    height: 200px;
+}
+
+#iniciar_sesion {
+    padding-bottom: 2%;
+}
+
+/* Estilo para el botón de inicio de sesión */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    margin-bottom: 4%;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+/* Estilo para el contenido principal */
+#main-content {
+    padding: 50px;
+}
+
+/* Estilo para el logo */
+#logo {
+    display: flex;
+    font-size: 18px;
+}
+
+#logo h1 {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'roboto';
+    padding-top: 4%;
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 767px) {
+
+    /*Estilo para el body*/
+    body {
+        position: relative;
+        min-height: 100vh;
+        padding-bottom: 0px;
+        background-image: url(../img/background.png);
+        background-size: cover;
+
+    }
+
+    /* Estilo para el footer */
+    footer {
+        position: static;
+        margin-left: 0.5%;
+    }
+
+    /* Estilo para la barra de navegación */
+    .navbar-nav .nav-link {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    /* Estilo para el título principal */
+    h1 {
+        font-size: 2rem;
+    }
+
+    /* Estilo para el formulario de inicio de sesión */
+    form {
+        margin-top: 20px;
+    }
+
+}
+
+/* Estilos para pantallas medianas */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+    /* Estilo para el footer */
+    footer {
+        position: static;
+        margin-left: 0.5%;
+    }
+
+    body {
+        padding-bottom: 0px;
+    }
+
+}
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 992px) {
+
+    /* Estilo para el footer */
+    footer {
+
+        margin-left: 0.4%;
+    }
+
+
+}
+
+
+/*---------------------------------*/
+
+
+
+.formulario__input-error {
+    font-size: 12px;
+    margin-bottom: 0;
+    color: red;
+    display: none;
+}
+
+.formulario__input-error-activo {
+    display: block;
+}
+
+.formulario__validacion-estado {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    z-index: 100;
+    font-size: 16px;
+    opacity: 0;
+}
+
+.mensaje_error_servidor {
+    color: red;
+    font-size: small;
+}
+
+.formulario__mensaje {
+    color: red;
+    display: none;
+    font-size: small;
+}
+
+.formulario__mensaje-activo {
+    display: block;
+}
+
+/* ----- -----  Estilos para Validacion ----- ----- */
+.formulario__grupo-correcto .formulario__validacion-estado {
+    color: #1ed12d;
+    opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__label {
+    color: #bb2929;
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+    color: #bb2929;
+    opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__input {
+    border: 3px solid #bb2929;
+}
+
+.contenido_opciones {
+    display: none;
+}
+
+#filtros {
+    display: none;
+}
+
+.link-normal {
+    text-decoration: none;
+    color: inherit;
+}
+
+#lista_queries {
+    align-items: center;
+}
+

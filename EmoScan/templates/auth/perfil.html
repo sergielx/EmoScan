@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block title %}Perfil de usuario{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center text-center">
+    <h1 class="pb-5">Perfil de usuario</h1>
+
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="#" id="datos_usuario_link" class="list-group-item list-group-item-action active"
+                aria-current="true" onclick="showContent('datos_usuario', this)">Datos del usuario</a>
+            <a href="#" id="editar_nombre_link" class="list-group-item list-group-item-action"
+                onclick="showContent('editar_nombre', this)">Editar nombre</a>
+            <a href="#" id="editar_username_link" class="list-group-item list-group-item-action"
+                onclick="showContent('editar_username', this)">Editar nombre de usuario</a>
+            <a href="#" id="editar_email_link" class="list-group-item list-group-item-action"
+                onclick="showContent('editar_email', this)">Cambiar correo electrónico</a>
+            <a href="#" id="editar_contra_link" class="list-group-item list-group-item-action"
+                onclick="showContent('editar_contra', this)">Cambiar contraseña</a>
+            <a href="#" id="eliminar_cuenta_link" class=" text-danger list-group-item list-group-item-action"
+                onclick="showContent('eliminar_cuenta_link', this)" data-bs-toggle="modal"
+                data-bs-target="#eliminarCuentaModal">Eliminar cuenta</a>
+        </div>
+    </div>
+    <!-- Modal para eliminar cuenta -->
+    <div class="modal fade" id="eliminarCuentaModal" tabindex="-1" aria-labelledby="eliminarCuentaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eliminarCuentaModalLabel">Eliminar cuenta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro de que desea eliminar su cuenta?</p>
+                    <p>Para confirmar la eliminación de tu cuenta, ingresa tu contraseña:</p>
+                    <form action="{{ url_for('auth.delete_account') }}" method="POST" id="eliminarCuentaForm">
+                        <div class="mb-3">
+                            <input type="password" name="password" id="passwordInputD" class="form-control"
+                                placeholder="Contraseña">
+                        </div>
+                        {% for message in get_flashed_messages() %}
+                        <div class="mensaje_error_servidor" id="mensaje_error_servidor"> {{ message }}</div>
+                        {% endfor %}
+                        <div class="alert alert-danger" id="errorMessage" style="display: none;"></div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card my-6" id="opciones_perfil">
+            <div class="card-body">
+                <div id="datos_usuario">
+                    <h3 class="mb-4">Datos del usuario</h3>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 fw-bold">Nombre:</div>
+                        <div class="col-sm-8">{{current_user.name}}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 fw-bold">Apellidos:</div>
+                        <div class="col-sm-8">{{current_user.last}}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 fw-bold">Nombre de usuario:</div>
+                        <div class="col-sm-8">{{current_user.username}}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 fw-bold">Correo electrónico:</div>
+                        <div class="col-sm-8">{{current_user.email}}</div>
+                    </div>
+
+                </div>
+                <div id="editar_nombre" style="display: none;">
+                    <h3 class="mb-4">Editar nombre</h3>
+                    <form action="" method="POST">
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Nombre:</div>
+                            <div class="col-sm-8">
+                                <input type="text" name="name" class="form-control" placeholder="Nuevo nombre" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Apellidos:</div>
+                            <div class="col-sm-8">
+                                <input type="text" name="last" class="form-control" placeholder="Nuevo apellido">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </form>
+                </div>
+
+                <div id="editar_username" style="display: none;">
+                    <h3 class="mb-4">Editar nombre de usuario</h3>
+                    <form action="" method="POST">
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Nombre de usuario:</div>
+                            <div class="col-sm-8">
+                                <input type="text" name="username" class="form-control"
+                                    placeholder="Nuevo nombre de usuario" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </form>
+                </div>
+
+                <div id="editar_email" style="display: none;">
+                    <h3 class="mb-4">Cambiar correo electrónico</h3>
+                    <form action="" method="POST">
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Correo electrónico:</div>
+                            <div class="col-sm-8">
+                                <input type="email" name="email" class="form-control"
+                                    placeholder="Nuevo correo electrónico">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </form>
+                </div>
+
+                <div id="editar_contra" style="display: none;">
+                    <h3 class="mb-4">Cambiar contraseña</h3>
+                    <form action="" method="POST">
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Contraseña actual:</div>
+                            <div class="col-sm-8">
+                                <input type="password" name="current_password" class="form-control"
+                                    placeholder="Contraseña actual" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Nueva contraseña:</div>
+                            <div class="col-sm-8">
+                                <input type="password" name="new_password" class="form-control"
+                                    placeholder="Nueva contraseña" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </form>
+                </div>
+                {% for message in get_flashed_messages() %}
+                <div class="mensaje_error_servidor" id="mensaje_error_servidor"> {{ message }}</div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

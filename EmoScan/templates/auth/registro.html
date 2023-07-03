@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro de usuario{% endblock %}
+<!-- onsubmit="return validarRegistro()" -->
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <h3 class="card-title mb-2 text-center">Registro de usuario</h3>
+        <form class="p-2 mb-3 bg-light border-1 border primary shadow-lg" novalidate id = "formulario" class="formulario" method="post"> 
+            <p>Rellene el formulario para crear su cuenta y empezar a utilizar la aplicación.</p>
+            <div class="row">
+                <div class="col-md-6" id="grupo__name">
+                    <label for="name" class="form-label" >Nombre<span class="obligatorio">*</span></label>          
+                    <div>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Introduce su nombre">
+                    </div>
+                    
+                    <p class="formulario__input-error">El nombre solo puede llevar letras y no puede estar vacio.</p>                
+                </div>
+                <div class="col-md-6" id="grupo__last">
+                    <label for="last" class="form-label" >Apellidos<span class="obligatorio">*</span></label>
+                    <div>
+                        <input type="text" class="form-control" id="last" name="last" placeholder="Introduce sus apellidos">
+                    </div>
+                    
+                    <p class="formulario__input-error">Los apellidos solo pueden llevar letras y no puede estar vacio.</p>
+                </div>
+            </div>                
+            <div class="mb-3" id="grupo__username">
+                <label for="username" class="form-label">Nombre de usuario<span class="obligatorio">*</span></label>
+                <div>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Introduce un nombre de usuario">
+                </div>
+                
+                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo y no puede estar vacio.</p>
+            </div>
+            <div class="mb-3" id="grupo__email">
+                <label for="email" class="form-label">Correo electrónico<span class="obligatorio">*</span></label>
+                <div>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="xxx@xxx.xxx">
+                </div>
+                
+                <p class="formulario__input-error">El formato debe ser xxx@xxx.xxx y no puede estar vacio</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6" id="grupo__password">
+                    <label for="password" class="form-label">Contraseña<span class="obligatorio">*</span></label>
+                    <div>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Introduce la contraseña">
+                    </div>
+                    
+                    <p class="formulario__input-error">La contraseña debe tener minimo 8 carácteres y una mayúscula y no puede estar vacio.</p>
+                    
+                </div>
+                <div class="col-md-6" id="grupo__confirmPassword">
+                    <label for="confirmPassword" class="form-label">Confirmar contraseña<span class="obligatorio">*</span></label>
+                    <div>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirme su contraseña">
+                    </div>
+                    
+                    <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+                </div>
+            </div>
+            <div class="form-check" id="grupo__terms">
+                <input type="checkbox" name="terms" id="terms" class="form-check-input">
+                <label class="form-check-label" for="terms">Acepto los <a href="{{ url_for('terminos_condiciones')}}">Términos y condiciones</a><span class="obligatorio">*</span></label>
+            </div>
+            <div class="formulario__mensaje" id="formulario__mensaje">
+				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>              
+			</div>
+            {% for message in get_flashed_messages() %}
+                <div class="mensaje_error_servidor" id="mensaje_error_servidor"> {{ message }}</div>
+            {% endfor %}
+            <div class="center">
+                <button type="submit" id = "submit"class="btn btn-primary">Registrarse</button>
+            </div>
+            
+            <span class="obligatorio">* Requerido</span>
+        </form>
+    </div>
+  </div>
+{% endblock %}

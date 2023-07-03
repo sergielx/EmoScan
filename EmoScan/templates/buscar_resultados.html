@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Buscador de tweets{% endblock %}
+{% block content %}
+<div class="container col-md-7">
+
+    <div class="justify-content-center text-center">
+        <h2>Resultados de la búsqueda</h2>
+        <h4>Parámetros utilizados en la búsqueda</h4>
+    </div>
+
+    <div class="card justify-content-center text-center">
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Tipo de consulta:</strong> {{ filtros.tipo }}</li>
+                <li class="list-group-item"><strong>Consulta:</strong> {{ filtros.consulta }}</li>
+                <li class="list-group-item"><strong>Número de tweets:</strong> {{ filtros.numero_tweets }}</li>
+                {% if filtros.mostrar_respuestas %}
+                <li class="list-group-item"><strong>Mostrar respuestas:</strong> Sí</li>
+                {% else %}
+                <li class="list-group-item"><strong>Mostrar respuestas:</strong> No</li>
+                {% endif %}
+                <li class="list-group-item"><strong>Idioma:</strong> {{ filtros.idioma }}</li>
+                {% if filtros.desde %}
+                <li class="list-group-item"><strong>Desde:</strong> {{ filtros.desde }}</li>
+                {% else %}
+                <li class="list-group-item"><strong>Desde:</strong> No especificado</li>
+                {% endif %}
+                {% if filtros.hasta %}
+                <li class="list-group-item"><strong>Hasta:</strong> {{ filtros.hasta }}</li>
+                {% else %}
+                <li class="list-group-item"><strong>Hasta:</strong> No especificado</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    {% if show_table %}
+    <div>
+        <div class="card">
+            <table class="table table-striped table-responsive-sm">
+                <thead>
+                    <tr>
+                        {% for column in columns %}
+                        <th scope="col">{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tweet in values %}
+                    <tr>
+                        {% for value in tweet%}
+                        <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            {% if pagination %}
+            <div class="pagination justify-content-center">
+                {{ pagination.links }}
+            </div>
+            {% endif %}
+        </div>
+
+        <br>
+
+        <div class="justify-content-center text-center">
+            <a href="{{ url_for('busc.volverABuscar') }}" class="btn btn-primary">Volver a buscar</a>
+            <a href="{{ url_for('ana.resultadosAnalizar')}}" class="btn btn-primary">Guardar y analizar</a>
+            <a href="{{ url_for('principal')}}" class="btn btn-primary">Guardar y volver al menú principal</a>
+
+        </div>
+    </div>
+
+    {% endif %}
+
+</div>
+{% endblock %}

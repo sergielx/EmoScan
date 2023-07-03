@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Resultados del análisis{% endblock %}
+
+{% block content %}
+<div class="container col-md-7 justify-content-center text-center">
+    <h2>Resultados del análisis</h2>
+    <br>
+    <div class="card">
+        <table class="table table-striped table-responsive-sm">
+            <thead>
+                <tr>
+                    {% for column in columns %}
+                    <th scope="col">{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for tweet in values %}
+                <tr>
+                    {% for value in tweet%}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        {% if pagination %}
+        <div class="pagination justify-content-center">
+            {{ pagination.links }}
+        </div>
+        {% endif %}
+    </div>
+
+    <br>
+
+    <div class="justify-content-center text-center">
+        <a href="{{ url_for('est.resultadosEstadisticas')}}" class="btn btn-primary">Ver estadísticas</a>
+        <a href="{{ url_for('principal')}}" class="btn btn-primary">Guardar y volver al menú principal</a>
+
+    </div>
+</div>
+{% endblock %}

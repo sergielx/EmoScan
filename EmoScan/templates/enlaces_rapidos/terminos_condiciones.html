@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Términos y condiciones{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card my-5">
+        <div class="card-body">
+            <h1 class="card-title mb-4 text-center">Términos y Condiciones de EmoScan</h1>
+            <h3>1. Introducción</h3> 
+            <p>
+                EmoScan es una aplicación que permite detectar emociones en los tweets. 
+                Al utilizar EmoScan, aceptas estos Términos y Condiciones. Si no estás de 
+                acuerdo con estos Términos y Condiciones, no utilices EmoScan.
+            </p>
+            <h3>2. Uso de la Aplicación</h3> 
+            <p>
+                El usuario se compromete a utilizar la aplicación de acuerdo con la ley, 
+                la moral y las buenas costumbres, así como a no utilizarla para fines ilícitos o fraudulentos.
+                El usuario es el único responsable de las opiniones y comentarios que publique en la aplicación 
+                y se compromete a no infringir los derechos de terceros. Asimismo, el usuario se compromete a no 
+                utilizar la aplicación para realizar actividades que puedan dañar, sobrecargar o perjudicar la 
+                aplicación o los sistemas informáticos de EmoScan.
+            </p>
+            <h3>3. Propiedad Intelectual</h3> 
+            <p>
+                EmoScan es propiedad exclusiva de Sergio Muñoz Cano. 
+                Todos los derechos de propiedad intelectual relacionados con EmoScan, 
+                incluyendo pero no limitado a patentes, marcas comerciales, derechos de autor y secretos comerciales, 
+                son propiedad exclusiva de EmoScan. Ningún contenido de EmoScan puede ser copiado, modificado, 
+                distribuido, reproducido, publicado, utilizado para crear trabajos derivados, transmitido, mostrado 
+                o vendido sin el consentimiento previo por escrito de EmoScan.
+            </p>
+            <h3>4. Responsabilidad</h3> 
+            <p>
+                EmoScan no garantiza la exactitud, integridad, adecuación o disponibilidad 
+                de la información o el contenido proporcionado a través de la aplicación. 
+                EmoScan no será responsable de ningún daño directo, indirecto, incidental, 
+                especial, consecuente o punitivo relacionado con el uso o la imposibilidad 
+                de usar EmoScan, incluyendo pero no limitado a la pérdida de datos o daño 
+                a equipos informáticos, incluso si EmoScan ha sido informado sobre la 
+                posibilidad de dichos daños.
+            </p>
+            <h3>5. Recopilación y uso de información personal</h3> 
+            <p>
+                EmoScan recopila y utiliza cierta información personal de sus usuarios, 
+                incluyendo su nombre, correo electrónico, contraseña y nombre de usuario de Twitter. 
+                Al utilizar EmoScan, aceptas que se recopile y utilice tu información personal de 
+                acuerdo con la Política de Privacidad de EmoScan.
+            </p>
+            <h3>6. Cookies</h3> 
+            <p>
+                EmoScan utiliza cookies para recopilar información sobre el uso de la aplicación. 
+                Al utilizar EmoScan, aceptas que se recopile y utilice información de cookies de 
+                acuerdo con la Política de Cookies de EmoScan.
+            </p>
+            <h3>7. Enlaces a sitios web de terceros</h3> 
+            <p>
+                EmoScan puede contener enlaces a sitios web de terceros. 
+                EmoScan no se responsabiliza de la precisión, relevancia, 
+                cumplimiento de los derechos de autor, legalidad, decencia o 
+                cualquier otro aspecto del contenido de los sitios web de terceros. 
+                El acceso y uso de los sitios web de terceros es bajo tu propio riesgo y discreción.
+            </p>
+            <h3>8. Ley aplicable y jurisdicción</h3> 
+            <p>
+                Estos términos y condiciones se regirán e interpretarán de acuerdo con la legislación 
+                española y cualquier disputa en relación con estos términos y condiciones se someterá 
+                a la jurisdicción exclusiva de los tribunales españoles.
+            </p>
+            <h3>9. Modificaciones de los Términos y Condiciones</h3> 
+            <p>
+                EmoScan se reserva el derecho de modificar estos Términos y Condiciones 
+                en cualquier momento y a su entera discreción. Las modificaciones serán 
+                efectivas inmediatamente después de la publicación en el sitio web de EmoScan. 
+                Es su responsabilidad revisar estos Términos y Condiciones regularmente para 
+                estar informado sobre cualquier cambio.
+            </p>
+            <hr>
+            <p>
+                Si tiene alguna pregunta sobre estos términos y condiciones, póngase en contacto con nosotros en: <a href="{{ url_for('contact.contacto')}}">Contacto</a>.
+                <br>
+                Estos términos y condiciones entran en vigor el 18/04/2023.
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

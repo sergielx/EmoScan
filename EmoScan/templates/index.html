@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-7 d-flex justify-content-center align-items-center">
+        <div id="eslogan" class="col-md-7" >
+            <h2>La mejor manera de detectar sentimientos en Twitter</h2>
+            <p>Captura sentimientos en twitter de una manera muy simple con EmoScan</p>
+            <img src="{{ url_for('static', filename='img/logof.png')}}" alt="EmoScan">
+        </div>             
+    </div>
+    <div class="col-md-4">
+        <form class="p-3 bg-light border-1 border primary shadow-lg" method="post" id="formulariol">
+            <div class="center">
+                <h1>¡Bienvenido a EmoScan!</h1>
+                <p>Ingrese a su cuenta para comenzar a utilizar la aplicación.</p>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label" >Correo electrónico</label>
+                <input type="text" class="form-control" id="emaill" name="email" placeholder="Introduce el nombre o el correo electrónico">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="passwordl" name="password" placeholder="Introduce la contraseña">
+            </div>
+            <div class="formulario__mensaje" id="formulario__mensaje">
+				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>              
+			</div>
+            {% for message in get_flashed_messages() %}
+                <div class="mensaje_error_servidor" id="mensaje_error_servidor"> {{ message }}</div>
+            {% endfor %}
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{{ url_for('auth.registro')}}">Registrarse</a>
+                </div>
+            </div>
+                <div class="center">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

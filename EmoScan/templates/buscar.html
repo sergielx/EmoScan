@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Buscador de tweets{% endblock %}
+{% block content %}
+<div class="container col-md-7">
+    <h2>Selecciona el método de búsqueda.</h2>
+
+    <form method="post" action="">
+        <div class="d-flex col-md-12">
+            <select id="opciones" class="form-select col-md-12">
+                <option value="">Selecciona una opción</option>
+                <option value="query">Realizar una consulta</option>
+                <option value="usuario">Buscar usuario</option>
+                <option value="hashtag">Buscar hashtag</option>
+            </select>
+
+        </div>
+
+        <br>
+
+        <div id="contenido">
+
+            <div id="contenido_query" class="contenido_opciones">
+                <div class="form-group col-md-9 d-flex">
+                    <input type="text" class="form-control col-md-8" name="query"
+                        placeholder="Introduce una palabra o frase clave para buscar tweets que la contengan">
+                    <div class="col-md-2">
+                        <input type="number" id="numero_tweets" name="numero_tweets" placeholder="Nº tweets"
+                            class="form-control">
+                    </div>
+                    <button type="button" class="btn btn-secondary col-md-2 filtros_btn">Filtros</button>
+                </div>
+            </div>
+
+            <div id="contenido_usuario" class="contenido_opciones">
+                <div class="form-group col-md-10 d-flex">
+                    <input type="text" class="form-control col-md-10" name="username"
+                        placeholder="Introduce un usuario para ver sus tweets">
+                    <div class="col-md-2">
+                        <input type="number" id="numero_tweets1" name="numero_tweets1" placeholder="Nº tweets"
+                            class="form-control">
+                    </div>
+                    <button type="button" class="btn btn-secondary col-md-2 filtros_btn">Filtros</button>
+                </div>
+            </div>
+
+            <div id="contenido_hashtag" class="contenido_opciones">
+                <div class="form-group col-md-9 d-flex">
+                    <input type="text" class="form-control col-md-8" name="hashtag"
+                        placeholder="Introduce un hashtag para ver tweets que lo contengan">
+                    <div class="col-md-2">
+                        <input type="number" id="numero_tweets2" name="numero_tweets2" placeholder="Nº tweets"
+                            class="form-control">
+                    </div>
+                    <button type="button" class="btn btn-secondary col-md-2 filtros_btn">Filtros</button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row align-items-center" id="filtros">
+
+            <div class="col-md-3">
+                <input type="checkbox" name="mostrar_respuestas" id="mostrar_respuestas" class="form-check-input">
+                <label for="mostrar_respuestas" class="form-check-label">Respuestas a tweets</label>
+            </div>
+
+            <div class="col-md-2">
+                <label for="idioma" class="form-label">Idioma</label>
+                <select name="idioma" id="idioma" class="form-select">
+                    <option value="en">Ingles</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="desde" class="form-label">Desde</label>
+                <input type="date" name="desde" id="desde" class="form-control">
+            </div>
+
+            <div class="col-md-2">
+                <label for="hasta" class="form-label">Hasta</label>
+                <input type="date" name="hasta" id="hasta" class="form-control">
+            </div>
+
+        </div>
+
+        <input type="hidden" name="access_token" value="acceso">
+
+        <div class="justify-content-center text-center">
+            <button type="submit" class="btn btn-primary" id="busc_tweets">Buscar</button>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}

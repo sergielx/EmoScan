@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Menu principal{% endblock %}
+{% block content %}
+
+<section class="py-3 text-center container">
+    <div class="row py-lg-3">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Bienvenido a EmoScan, {{current_user.username}}</h1>
+            <p class="lead text-muted">Descubre las posibilidades que ofrece EmoScan y comienza a explorar la aplicación
+                y sus utilidades</p>
+        </div>
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ url_for('static', filename='img/prin/busc.png')}}" alt="Buscar Tweets" style="height: 200px; object-fit: cover;">
+
+                    <div class="card-body">
+                        <p class="card-title">Buscar tweets</p>
+                        <p class="card-text">Aqui podrás buscar los tweets que posteriormente serán analizados. Esto lo
+                            podrás hacer mediante palabras clave, usuarios, o hashtags, además de ciertos filtros
+                            disponibles</p>
+                        <div class="justify-content-between align-items-center">
+                            <a href="{{ url_for('busc.buscar')}}" class="btn btn-sm btn-outline-secondary">Buscar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ url_for('static', filename='img/prin/ana.png')}}" alt="Analizar sentimientos" style="height: 200px; object-fit: cover;">
+
+                    <div class="card-body">
+                        <p class="card-title">Analizar sentimientos</p>
+                        <p class="card-text">Aquí podrás analizar los tweets que previamente has obtenido y guardado, y
+                            decidir si prefieres analizar sentimientos positivos o negativos, es decir, de odio o de
+                            amor.</p>
+                        <div class="justify-content-between align-items-center">
+                            <a href="{{ url_for('ana.analizar')}}" class="btn btn-sm btn-outline-secondary">Analizar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ url_for('static', filename='img/prin/est.png')}}" alt="Estadísticas" style="height: 200px; object-fit: cover;">
+
+                    <div class="card-body">
+                        <p class="card-title">Ver estadísticas</p>
+                        <p class="card-text">Aquí podrás ver las estadísticas de todos los tweets que ya hayas analizado
+                            previamente.</p>
+                        <br>
+                        <br>
+                        <div class="justify-content-between align-items-center">
+                            <a href="{{ url_for('est.estadisticas')}}" class="btn btn-sm btn-outline-secondary">Ver
+                                estadísticas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
