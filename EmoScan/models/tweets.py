@@ -24,6 +24,7 @@ cursor.execute("""
 # Confirma la transacción
 db.commit()
 
+#Clase Tweet
 class Tweet(UserMixin):
     def __init__(self, id, user_id, query_id, date, content, tweet_user, polarity=None, sentiment=None):
         self.id = id

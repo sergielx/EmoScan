@@ -85,20 +85,21 @@ def resultadosAnalizar():
         Tweet.addPolAndSent(analyze, sent, tweet[0])
         tweets__.append([tweet[1], tweet[2], tweet[3], analyze, sent])
 
-    tweet_df = pd.DataFrame(tweets__, columns=["fecha", "tweet", "usuario","polarity", "sentimiento"])
+    tweet_df = pd.DataFrame(tweets__, columns=["fecha", "tweet", "usuario","polaridad", "sentimiento"])
     tweet_df.to_csv("tweets_preprocessed.csv", index=False)
     csv_data = pd.read_csv('tweets_preprocessed.csv')
     values = csv_data.values
     columns = csv_data.columns.tolist()
 
-    per_page = 10  # Number of tweets to display per page
+    # Número de tweets por página
+    per_page = 10  
     
     total_tweets = len(csv_data)
     start = (page - 1) * per_page
     end = start + per_page
     values_paginated = values[start:end]
     
-    # Create the pagination object
+    # Crear el objeto de paginación
     pagination = Pagination(page=page, total=total_tweets, per_page=per_page, record_name='tweets', css_framework='bootstrap5')
     
     return render_template('analizar_resultados.html', page=page, columns=columns, pagination=pagination, values=values_paginated)
@@ -122,10 +123,10 @@ def eliminarConsulta():
 def eliminarConsultasSeleccionadas():
     if request.method == 'POST':
         selected_queries = request.form.getlist('query_id')
-        print(selected_queries)
-        
+      
         if selected_queries:
             for query_id in selected_queries:
+                # Eliminar los datos guardados
                 Tweet.deleteTweetsByQueryId(query_id)
                 Query.deleteQueryById(query_id)
 

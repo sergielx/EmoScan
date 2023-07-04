@@ -10,16 +10,6 @@ app.config.from_object('config.DevelopmentConfig')
 app.secret_key = 'dev'
 
 
-# Configuración del correo electrónico
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'emoscantfg@gmail.com'
-app.config['MAIL_PASSWORD'] = 'rlhlwiamildupzpx'
-app.config['MAIL_DEFAULT_SENDER'] = 'emoscantfg@gmail.com'
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-app.config['TESTING'] = False
-
 #Configuración de la base de datos
 db = mysql.connector.connect(
   host="localhost",
@@ -31,18 +21,16 @@ db = mysql.connector.connect(
 
 # #Importar vistas 
 from EmoScan.views.auth import auth
-from EmoScan.views.contacto import contact
 from EmoScan.views.buscar import busc
 from EmoScan.views.analizar import ana
 from EmoScan.views.estadisticas import est
 app.register_blueprint(auth)
-app.register_blueprint(contact)
 app.register_blueprint(busc)
 app.register_blueprint(ana)
 app.register_blueprint(est)
 
 
-
+#Configuración del index
 from EmoScan.models.users import User
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -94,6 +82,12 @@ def terminos_condiciones():
     session.pop('show_table', None)
     session.pop('show_table2', None)
     return render_template('enlaces_rapidos/terminos_condiciones.html')
+
+@app.route('/contacto')
+def contacto():
+    session.pop('show_table', None)
+    session.pop('show_table2', None)
+    return render_template('enlaces_rapidos/contacto.html')
 
 @app.route('/principal')
 @login_required

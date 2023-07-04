@@ -156,14 +156,15 @@ def resultadosBuscar():
 
     show_table = session.get('show_table', False)
 
-    per_page = 10  # Number of tweets to display per page
+    # Número de tweets por página
+    per_page = 10 
     
     total_tweets = len(csv_data)
     start = (page - 1) * per_page
     end = start + per_page
     values_paginated = values[start:end]
     
-    # Create the pagination object
+    # Eliminar los datos guardados
     pagination = Pagination(page=page, total=total_tweets, per_page=per_page, record_name='tweets', css_framework='bootstrap5')
 
     # Obtener los parámetros de búsqueda utilizados

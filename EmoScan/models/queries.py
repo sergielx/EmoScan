@@ -24,6 +24,7 @@ cursor.execute("""
 # Confirma la transacción
 db.commit()
 
+#Clase Query
 class Query(UserMixin):
     def __init__(self, id, user_id, query, query_datetime, query_type, show_replies=None, language=None, from_date=None, to_date=None, tweet_count=None):
         self.id = id

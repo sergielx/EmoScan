@@ -1,4 +1,3 @@
-
 from flask import(
     render_template, Blueprint, flash, redirect, request, session, url_for
 )
@@ -6,20 +5,8 @@ from flask import(
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from EmoScan.models.users import User
-from flask_mail import Mail
 from EmoScan import db, app
 
-
-mail = Mail(app)
-# Configuración del correo electrónico
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'emoscantfg@gmail.com'
-app.config['MAIL_PASSWORD'] = 'egiborgmgtarikeq'
-app.config['MAIL_DEFAULT_SENDER'] = 'emoscantfg@gmail.com'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-mail = Mail(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -37,6 +24,7 @@ def registro():
     session.pop('show_table', None)
     session.pop('show_table2', None)
     if request.method == 'POST':
+
         # Obtener los datos del formulario de registro
         name = request.form.get('name')
         last = request.form.get('last')
@@ -66,7 +54,7 @@ def registro():
                                (name, last, username, email, hash_password))
                 db.commit()
 
-                # # Iniciar sesión
+                # Iniciar sesión
                 cursor.execute('SELECT * FROM users WHERE email = %s', (email,))
                 usuario = cursor.fetchone()
                 id = usuario[0]
@@ -116,33 +104,6 @@ def login():
     return render_template('auth/login.html')
 
 
-# @auth.route('/olvide_mi_contraseña', methods=('GET','POST'))
-# def contra():
-#     session.pop('show_table')
-#     session.pop('show_table2')
-#     if request.method == 'POST':
-#         email = request.form['email']
-#         cursor = db.cursor()
-
-#         try:
-#             cursor.execute('SELECT * FROM users WHERE email = %s', (email,))
-#             user = cursor.fetchone()
-#             if user is None:
-#                 # Si el usuario no existe
-#                 flash('Este correo electrónico no está registrado', 'error')
-#                 return render_template('auth/contra.html')                         
-#             else:
-#                 token = generar_token(16)
-#                 cursor.execute("UPDATE users SET token_rec_pass=%s WHERE email=%s", (token, email))
-#                 db.commit()
-#                 mensaje = enviar_correo_rec_pass(email, token)
-#                 return render_template('auth/camb_contra.html', mensaje=mensaje)
-#         except Exception as e:
-#             print(e)
-#             flash('Error en la recuperación de contraseña, inténtalo de nuevo', 'error')
-
-#     return render_template('auth/contra.html')
-
 @auth.route('/logout')
 @login_required
 def logout():
@@ -177,36 +138,6 @@ def delete_account():
 
     # Si se accede a la ruta con el método GET, mostrar un error o redireccionar
     return redirect(url_for('perfil'))
-
-# def generar_token(n):
-#     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=n))
-
-# def enviar_correo_rec_pass(email, token):
-#     mensaje = Message('Recuperación de contraseña', sender='emoscantfg@gmail.com', recipients=[email])
-#     mensaje.body = "Hola te envio un mensaje"
-#     mail.send(mensaje)
-#     return 'Se ha enviado un correo electrónico con instrucciones para recuperar la contraseña.'
-
-# @auth.route('/cambiar_contraseña/<token>', methods=['GET', 'POST'])
-# def cambiar_password(token):
-#     cursor = db.cursor()
-#     cursor.execute("SELECT * FROM users WHERE token_rec_pass=%s", (token,))
-#     user = cursor.fetchone()
-#     if user is None:
-#         mensaje = 'El enlace de recuperación de contraseña no es válido o ha expirado.'
-#     else:
-#         if request.method == 'POST':
-#             password = request.form['password']
-#             confirm = request.form['confirm']
-#             if password == confirm:
-#                 cursor.execute("UPDATE users SET password=%s, token_rec_pass=NULL WHERE id=%s", (password, user[0]))
-#                 db.commit()
-#                 mensaje = 'La contraseña ha sido actualizada correctamente.'
-#             else:
-#                 mensaje = 'Las contraseñas no coinciden.'
-#         else:
-#             mensaje = None
-#     return render_template('camb_contra.html', mensaje=mensaje)
 
 
 @auth.route('/perfil', methods=('GET', 'POST'))

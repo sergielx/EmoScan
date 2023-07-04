@@ -1,9 +1,6 @@
-/* Estilos generales */
 
-/* Importamos las fuentes de Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300;400&display=swap');
 
-/* Estilo para el fondo de la página */
 html,
 body {
     background-image: url(../img/background.png);
@@ -24,7 +21,7 @@ body {
     padding: 20px;
 }
 
-/* Estilo para el footer */
+
 footer {
     width: 100%;
     opacity: 80%;

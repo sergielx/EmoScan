@@ -63,7 +63,6 @@ class User(UserMixin):
             else:
                 raise ValueError("Campo inválido")
 
-            # Ejecuta la sentencia SQL con los valores proporcionados
             cursor.execute(sql, (new_value, user_id))
             db.commit()
         except Exception as ex:
