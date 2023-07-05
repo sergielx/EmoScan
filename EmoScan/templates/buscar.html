@@ -55,7 +55,9 @@
                 </div>
             </div>
         </div>
-
+        {% for message in get_flashed_messages() %}
+                <div class="mensaje_error_servidor" id="mensaje_error_servidor">Error al obtener los tweets</div>
+        {% endfor %}
         <br>
 
         <div class="row align-items-center" id="filtros">

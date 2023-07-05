@@ -52,18 +52,17 @@ def get_tweets(filtros, numero_tweets):
     
     filtros_.append(numero_tweets)
     
+    
     if 'query' in request.form and request.form['query']:
         query = request.form['query']
         consulta = query + filtros
         scraper = sntwitter.TwitterSearchScraper(consulta)
-        print(consulta)
         filtros_.append("Palabra clave")
 
     elif 'username' in request.form and request.form['username']:
         username = request.form['username']
         consulta = 'from:' + username + filtros
         scraper = sntwitter.TwitterSearchScraper(consulta)
-        print(consulta)
         filtros_.append("Usuario")
 
     elif 'hashtag' in request.form and request.form['hashtag']:
@@ -102,8 +101,11 @@ def buscar():
 
         filtros = ''
         numero_tweets = 10
-
-        tweets, filtros_ = get_tweets(filtros, numero_tweets)
+        
+        try:
+            tweets, filtros_ = get_tweets(filtros, numero_tweets)
+        except Exception as e:
+            return redirect(url_for('busc.buscar'))
 
         query_ = request.form.get('query', '') or request.form.get('username', '') or request.form.get('hashtag', '')
 
