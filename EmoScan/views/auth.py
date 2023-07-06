@@ -137,7 +137,7 @@ def delete_account():
             flash('Contraseña incorrecta. No se pudo eliminar la cuenta.', 'error')
 
     # Si se accede a la ruta con el método GET, mostrar un error o redireccionar
-    return redirect(url_for('perfil'))
+    return redirect(url_for('auth.perfil'))
 
 
 @auth.route('/perfil', methods=('GET', 'POST'))

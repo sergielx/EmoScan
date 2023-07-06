@@ -60,6 +60,18 @@ def resultadosAnalizar():
     elif 'query_id' in session:
         query_id = session['query_id']
 
+
+    query_obj = Query.getQueryById(query_id)
+    filtros_ = {
+        'tipo': query_obj.query_type,
+        'consulta': query_obj.query,
+        'numero_tweets': query_obj.tweet_count,
+        'mostrar_respuestas': query_obj.show_replies,
+        'idioma': query_obj.language,
+        'desde': query_obj.from_date,
+        'hasta': query_obj.to_date
+    }
+
     session['query_id'] = query_id
 
     page = request.args.get(get_page_parameter(), type=int, default=1)
@@ -102,7 +114,7 @@ def resultadosAnalizar():
     # Crear el objeto de paginación
     pagination = Pagination(page=page, total=total_tweets, per_page=per_page, record_name='tweets', css_framework='bootstrap5')
     
-    return render_template('analizar_resultados.html', page=page, columns=columns, pagination=pagination, values=values_paginated)
+    return render_template('analizar_resultados.html', page=page, columns=columns, pagination=pagination, values=values_paginated, filtros=filtros_)
 
 
 @ana.route('/eliminar_consulta', methods=['GET', 'POST'])
